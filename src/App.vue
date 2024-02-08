@@ -1,26 +1,18 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import HeaderComp from './components/HeaderComp.vue';
 </script>
 
 <template>
-  <header>
-    <div>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <HeaderComp />
 
   <RouterView />
 </template>
 
 
 <style>
-
-* {
+/* body {
   background-color: black;
   color: white;
-}
-
+} */
 </style>
