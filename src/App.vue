@@ -14,3 +14,13 @@ import { RouterLink, RouterView } from 'vue-router'
 
   <RouterView />
 </template>
+
+
+<style>
+
+* {
+  background-color: black;
+  color: white;
+}
+
+</style>
