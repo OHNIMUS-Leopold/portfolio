@@ -89,7 +89,7 @@ onMounted(() => {
   height: 12px;
   background-color: red;
   opacity: 0.8;
-  transition: width 0.3s, height 0.3s;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
 .cursor-dot.is-active {
@@ -97,7 +97,7 @@ onMounted(() => {
   height: 50px;
   background-color: red;
   border: 2px solid red;
-  transition: width 0.3s, height 0.3s;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
   mix-blend-mode: lighten;
 }
 
@@ -106,14 +106,14 @@ onMounted(() => {
   height: 50px;
   border: 2px solid red;
   opacity: 0;
-  transition: width 0.3s, height 0.3s;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
 .cursor-outline.is-active {
   width: 0px;
   height: 0px;
   border: none;
-  transition: width 0.3s, height 0.3s;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
 .cursor-dot,
@@ -127,4 +127,23 @@ onMounted(() => {
   transform: translate(-50%, -50%);
 }
 
+.cursor-dot::before {
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: red;
+  border-radius: 50%;
+  opacity: 0.2;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.cursor-dot.is-active::before {
+  width: 200px;
+  height: 200px;
+  opacity: 0;
+}
 </style>
