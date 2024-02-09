@@ -85,34 +85,35 @@ onMounted(() => {
 }
 
 .cursor-dot {
-  width: 6px;
-  height: 6px;
+  width: 12px;
+  height: 12px;
   background-color: red;
   opacity: 0.8;
-  transition: width 0.5s, height 0.5s;
+  transition: width 0.3s, height 0.3s;
 }
 
 .cursor-dot.is-active {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   background-color: red;
   border: 2px solid red;
-  transition: width 0.5s, height 0.5s;
+  transition: width 0.3s, height 0.3s;
+  mix-blend-mode: lighten;
 }
 
 .cursor-outline {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border: 2px solid red;
-  opacity: 0.8;
-  transition: width 0.5s, height 0.5s;
+  opacity: 0;
+  transition: width 0.3s, height 0.3s;
 }
 
 .cursor-outline.is-active {
   width: 0px;
   height: 0px;
   border: none;
-  transition: width 0.5s, height 0.5s;
+  transition: width 0.3s, height 0.3s;
 }
 
 .cursor-dot,
