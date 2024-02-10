@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.theme-dark1 {
+--bg-color: #ffffff;
+--text-color: #ff0000;
+--accent-color: #ff0000;
+}
+
+.theme-dark2 {
+--bg-color: #00ff00;
+--text-color: #ff00ff;
+--accent-color: #0000ff;
+}
+
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}

@@ -27,15 +27,14 @@ window.addEventListener("mousemove", function (e) {
 
 onMounted(() => {
   const addEventListeners = () => {
-    const links = document.querySelectorAll('a');
-
-    links.forEach(link => {
-      link.addEventListener('mouseover', () => {
+    const linksAndButtons = document.querySelectorAll('a, button'); // Ajoutez les boutons ici
+    linksAndButtons.forEach(element => {
+      element.addEventListener('mouseenter', () => {
         cursorDot.value?.classList.add('is-active');
         cursorOutline.value?.classList.add('is-active');
       });
 
-      link.addEventListener('mouseleave', () => {
+      element.addEventListener('mouseleave', () => {
         cursorDot.value?.classList.remove('is-active');
         cursorOutline.value?.classList.remove('is-active');
       });
@@ -45,10 +44,10 @@ onMounted(() => {
   addEventListeners();
 
   router.beforeEach((to, from, next) => {
-    const links = document.querySelectorAll('a');
-    links.forEach(link => {
-      link.removeEventListener('mouseover', addEventListeners);
-      link.removeEventListener('mouseleave', addEventListeners);
+    const linksAndButtons = document.querySelectorAll('a, button'); // Ajoutez les boutons ici
+    linksAndButtons.forEach(element => {
+      element.removeEventListener('mouseenter', addEventListeners);
+      element.removeEventListener('mouseleave', addEventListeners);
     });
 
     next();
@@ -57,7 +56,6 @@ onMounted(() => {
     });
   });
 });
-
 </script>
 
 <template>
@@ -76,74 +74,80 @@ onMounted(() => {
   color: white;
 } */
 
-* {
-  cursor: none;
+
+@media (min-width: 1024px) { 
+
+  *, button {
+    cursor: none;
+  }
+
+  .element:hover {
+    cursor: none; 
+  }
+
+  .cursor-dot {
+    width: 12px;
+    height: 12px;
+    background-color: red;
+    opacity: 0.8;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+  }
+
+  .cursor-dot.is-active {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border: 2px solid red;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+    /* mix-blend-mode: lighten; */
+  }
+
+  .cursor-outline {
+    width: 50px;
+    height: 50px;
+    border: 2px solid red;
+    opacity: 0;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+  }
+
+  .cursor-outline.is-active {
+    width: 0px;
+    height: 0px;
+    border: none;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+  }
+
+  .cursor-dot,
+  .cursor-outline {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    z-index: 20;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .cursor-dot::before {
+    content: '';
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: red;
+    border-radius: 50%;
+    opacity: 0.2;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .cursor-dot.is-active::before {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+  }
+
 }
 
-.element:hover {
-  cursor: none; 
-}
-
-.cursor-dot {
-  width: 12px;
-  height: 12px;
-  background-color: red;
-  opacity: 0.8;
-  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
-}
-
-.cursor-dot.is-active {
-  width: 50px;
-  height: 50px;
-  background-color: red;
-  border: 2px solid red;
-  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
-  mix-blend-mode: lighten;
-}
-
-.cursor-outline {
-  width: 50px;
-  height: 50px;
-  border: 2px solid red;
-  opacity: 0;
-  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
-}
-
-.cursor-outline.is-active {
-  width: 0px;
-  height: 0px;
-  border: none;
-  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
-}
-
-.cursor-dot,
-.cursor-outline {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  pointer-events: none;
-  z-index: 20;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.cursor-dot::before {
-  content: '';
-  position: absolute;
-  width: 0px;
-  height: 0px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: red;
-  border-radius: 50%;
-  opacity: 0.2;
-  transition: width 0.3s ease-in-out, height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-.cursor-dot.is-active::before {
-  width: 200px;
-  height: 200px;
-  opacity: 0;
-}
 </style>
