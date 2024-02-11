@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { ref, onMounted } from 'vue';
+import { themes, currentTheme } from '../assets/utils';
 
 const isRotated = ref(false);
 
-const themes = ['theme-dark1', 'theme-dark2']; 
-const currentTheme = ref(themes[Math.floor(Math.random() * themes.length)]);
+// const themes = ['theme-dark1', 'theme-dark2']; 
+// const currentTheme = ref(themes[Math.floor(Math.random() * themes.length)]);
 
 function toggleTheme() {
   isRotated.value = !isRotated.value;
@@ -41,8 +42,10 @@ onMounted(() => {
 .switch-btn {
   width: 32px;
   height: 32px;
-  background-color: gray;
-  border: 2px solid black;
+  background-color: var(--bg-color);
+  border: 2px solid var(--text-color);
+  border-radius: 5px;
+  outline: none;
   
   position: relative;
 
@@ -61,18 +64,18 @@ onMounted(() => {
   left: 0;
   width: 0;
   height: 0;
-  border-top: 15px solid black; 
+  border-top: 15px solid var(--text-color); 
   border-right: 15px solid transparent; 
   border-bottom: 15px solid transparent; 
-  border-left: 15px solid black;   
+  border-left: 15px solid var(--text-color);   
   transition: all 0.2s ease; 
 }
 
 .switch-btn:hover::after {
-  border-top: 23px solid black; 
+  border-top: 23px solid var(--text-color); 
   border-right: 23px solid transparent; 
   border-bottom: 23px solid transparent; 
-  border-left: 23px solid black;   
+  border-left: 23px solid var(--text-color);   
 }
 
 </style>

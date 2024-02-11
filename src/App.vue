@@ -1,11 +1,28 @@
 <script setup lang="ts">
-import { RouterView, useRouter } from 'vue-router'
+import { RouterView, useRouter } from 'vue-router';
 import HeaderComp from './components/HeaderComp.vue';
-import { ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue';
+import { currentTheme } from './assets/utils';
 
 const cursorDot = ref<HTMLElement | null>(null);
 const cursorOutline = ref<HTMLElement | null>(null);
 const router = useRouter();
+
+const isLoading = ref(true);
+const showProgress = ref(true);
+const showGreeting = ref(false);
+const loadingProgress = ref(0);
+
+const startLoading = () => {
+  setTimeout(() => {
+    showProgress.value = false;
+    showGreeting.value = true;
+  }, 4000);
+
+  setTimeout(() => {
+    isLoading.value = false;
+  }, 6000);
+};
 
 window.addEventListener("mousemove", function (e) {
   const posX = e.clientX;
@@ -26,8 +43,10 @@ window.addEventListener("mousemove", function (e) {
 });
 
 onMounted(() => {
+  document.body.className = currentTheme.value;
+
   const addEventListeners = () => {
-    const linksAndButtons = document.querySelectorAll('a, button'); // Ajoutez les boutons ici
+    const linksAndButtons = document.querySelectorAll('a, button'); 
     linksAndButtons.forEach(element => {
       element.addEventListener('mouseenter', () => {
         cursorDot.value?.classList.add('is-active');
@@ -44,7 +63,7 @@ onMounted(() => {
   addEventListeners();
 
   router.beforeEach((to, from, next) => {
-    const linksAndButtons = document.querySelectorAll('a, button'); // Ajoutez les boutons ici
+    const linksAndButtons = document.querySelectorAll('a, button'); 
     linksAndButtons.forEach(element => {
       element.removeEventListener('mouseenter', addEventListeners);
       element.removeEventListener('mouseleave', addEventListeners);
@@ -53,18 +72,43 @@ onMounted(() => {
     next();
     setTimeout(() => {
       addEventListeners();
-    });
+    }, 6100);
   });
+
+
+  startLoading();
+
+  const updateProgress = () => {
+    if (showProgress.value) {
+      loadingProgress.value += 1;
+      if (loadingProgress.value < 100) {
+        setTimeout(updateProgress, 30);
+      }
+    }
+  };
+
+  updateProgress();
 });
 </script>
 
 <template>
-  <HeaderComp />
 
-  <RouterView />
+  <transition name="fade">
+    <div v-if="isLoading" class="loading-screen" >
+      <div v-if="showProgress" class="loading-progress">{{ loadingProgress }}%</div>
+      <div v-if="showGreeting" class="loading-greeting">Bonjour</div>
+    </div>
 
-  <div class="cursor-dot" ref="cursorDot"></div>
-  <div class="cursor-outline" ref="cursorOutline"></div>
+
+
+  <div v-else>
+    <HeaderComp />
+    <RouterView />
+    <div class="cursor-dot" ref="cursorDot"></div>
+    <div class="cursor-outline" ref="cursorOutline"></div>
+  </div>
+
+</transition>
 </template>
 
 
@@ -148,6 +192,35 @@ onMounted(() => {
     opacity: 0;
   }
 
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loading-progress {
+  font-size: 24px;
+}
+
+.loading-greeting {
+  font-size: 36px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 </style>

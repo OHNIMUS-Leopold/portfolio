@@ -1,12 +1,13 @@
 <template>
     
-  <!-- <div class="fond">
-    <div class="blob-cont">
+  <div>
+    <!-- <div class="blob-cont">
         <div class="yellow blob"></div>
         <div class="red blob"></div>
         <div class="green blob"></div>
-    </div>
-  </div> -->
+    </div> -->
+    <!-- <div class="p-40"><a href="https://www.google.com">lien</a></div> -->
+  </div>
 
 
 
