@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { RouterView, useRouter } from 'vue-router';
 import HeaderComp from './components/HeaderComp.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, nextTick } from 'vue';
 import { currentTheme } from './assets/utils';
+//@ts-ignore
+import baffle from 'baffle';
 
 const cursorDot = ref<HTMLElement | null>(null);
 const cursorOutline = ref<HTMLElement | null>(null);
@@ -12,6 +14,15 @@ const isLoading = ref(true);
 const showProgress = ref(true);
 const showGreeting = ref(false);
 const loadingProgress = ref(0);
+const currentDate = ref('');
+
+const formatDate = () => {
+  const now = new Date();
+  const day = String(now.getDate()).padStart(2, '0');
+  const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+  const month = monthNames[now.getMonth()];
+  currentDate.value = `${day}/${month}`;
+};
 
 const startLoading = () => {
   setTimeout(() => {
@@ -21,7 +32,7 @@ const startLoading = () => {
 
   setTimeout(() => {
     isLoading.value = false;
-  }, 6000);
+  }, 7000);
 };
 
 window.addEventListener("mousemove", function (e) {
@@ -62,6 +73,31 @@ onMounted(() => {
 
   addEventListeners();
 
+  formatDate();
+  nextTick(() => {
+    setTimeout(() => {
+      const text = baffle(document.querySelector('.data'));
+      text.set({
+        characters : '█▓█ ▒░/▒░ █░▒▓/ █▒▒ ▓▒▓/█ ░█▒/ ▒▓░ █<░▒ ▓/░>',
+        speed: 120
+      });
+      text.start();
+      text.reveal(2000);
+    }, 4000);  // Démarrer l'animation après 4 secondes
+  });
+
+  nextTick(() => {
+  setTimeout(() => {
+      const text2 = baffle(document.querySelector('.data2'));
+      text2.set({
+        characters : '█▓█ ▒░/▒░ █░▒▓/ █▒▒ ▓▒▓/█ ░█▒/ ▒▓░ █<░▒ ▓/░>',
+        speed: 120
+      });
+      text2.start();
+      text2.reveal(2000);
+    }, 4000);  // Démarrer l'animation après 4 secondes
+  });
+
   router.beforeEach((to, from, next) => {
     const linksAndButtons = document.querySelectorAll('a, button'); 
     linksAndButtons.forEach(element => {
@@ -72,7 +108,7 @@ onMounted(() => {
     next();
     setTimeout(() => {
       addEventListeners();
-    }, 6100);
+    }, 7100);
   });
 
 
@@ -95,8 +131,16 @@ onMounted(() => {
 
   <transition name="fade">
     <div v-if="isLoading" class="loading-screen" >
-      <div v-if="showProgress" class="loading-progress">{{ loadingProgress }}%</div>
-      <div v-if="showGreeting" class="loading-greeting">Bonjour</div>
+      <div v-if="showProgress" class="loading-progress">
+        <p class="font-proto">{{ loadingProgress }}%</p>
+      </div>
+      <div v-if="showGreeting" class="loading-greeting">
+        <div>
+          <p class="data font-proto">{{ currentDate }}</p>
+          <br>
+          <p class="data2 font-proto">Léopold OHNIMUS</p>
+        </div>
+      </div>
     </div>
 
 
@@ -109,6 +153,9 @@ onMounted(() => {
   </div>
 
 </transition>
+
+
+
 </template>
 
 
