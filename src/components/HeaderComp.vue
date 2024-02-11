@@ -20,7 +20,7 @@ onMounted(() => {
 
 <template>
     <header class="fixed top-0 left-0 z-10 flex">
-        <nav>
+        <nav class="font-proto font-light">
             <RouterLink to="/">Home</RouterLink>
             <RouterLink to="/about">About</RouterLink>
         </nav>

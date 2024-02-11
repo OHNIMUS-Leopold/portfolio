@@ -2,17 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Proto-Mono';
+    src: url('./fonts/ProtoMonoLight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proto-Mono';
+    src: url('./fonts/ProtoMonoRegular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proto-Mono';
+    src: url('./fonts/ProtoMonoMedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proto-Mono';
+    src: url('./fonts/ProtoMonoSemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+  
+  
+
 
 .theme-dark1 {
---bg-color: #ffffff;
---text-color: #ff0000;
---accent-color: #ff0000;
+    --bg-color: #ffffff;
+    --text-color: #ff0000;
+    --accent-color: #ff0000;
 }
 
 .theme-dark2 {
---bg-color: #00ff00;
---text-color: #ff00ff;
---accent-color: #0000ff;
+    --bg-color: #00ff00;
+    --text-color: #ff00ff;
+    --accent-color: #0000ff;
 }
 
 

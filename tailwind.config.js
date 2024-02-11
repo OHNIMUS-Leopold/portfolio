@@ -12,6 +12,7 @@ module.exports = {
 
       fontFamily: {
         montserrat: "Montserrat, sans-serif",
+        proto : "Proto-Mono, sans-serif",
       },
       
       boxShadow: {
