@@ -68,10 +68,22 @@ onMounted(() => {
         cursorDot.value?.classList.remove('is-active');
         cursorOutline.value?.classList.remove('is-active');
       });
+      
+      element.addEventListener('click', () => {
+        cursorDot.value?.classList.add('is-clicked');
+        cursorOutline.value?.classList.add('is-clicked');
+        setTimeout(() => {
+          cursorDot.value?.classList.remove('is-clicked');
+          cursorOutline.value?.classList.remove('is-clicked');
+        }, 300);
+      });
     });
   };
-
+setTimeout(() => {
   addEventListeners();
+  console.log('elSTART');
+}, 7100);
+
 
   formatDate();
   nextTick(() => {
@@ -103,12 +115,14 @@ onMounted(() => {
     linksAndButtons.forEach(element => {
       element.removeEventListener('mouseenter', addEventListeners);
       element.removeEventListener('mouseleave', addEventListeners);
+      element.removeEventListener('click', addEventListeners);
     });
 
     next();
     setTimeout(() => {
       addEventListeners();
-    }, 7100);
+      console.log('elROUTE');
+    }, 200);
   });
 
 
@@ -237,6 +251,18 @@ onMounted(() => {
     width: 200px;
     height: 200px;
     opacity: 0;
+  }
+
+  .cursor-dot.is-clicked,
+  .cursor-outline.is-clicked {
+    animation: clickAnimation 0.3s ease-in-out;
+  }
+
+
+  @keyframes clickAnimation {
+    0% { transform: scale(1) translate(-50%, -50%); } /* Ajustement de la position initiale */
+    50% { transform: scale(1.2) translate(-42%, -42%); } /* Ajustement de la position à mi-animation */
+    100% { transform: scale(1) translate(-50%, -50%); } /* Retour à la position initiale */
   }
 
 }
