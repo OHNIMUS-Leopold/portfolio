@@ -144,7 +144,7 @@ setTimeout(() => {
 <template>
 
   <transition name="fade">
-    <div v-if="isLoading" class="loading-screen" >
+    <!-- <div v-if="isLoading" class="loading-screen" >
       <div v-if="showProgress" class="loading-progress">
         <p class="font-proto">{{ loadingProgress }}%</p>
       </div>
@@ -155,11 +155,11 @@ setTimeout(() => {
           <p class="data2 font-proto">Léopold OHNIMUS</p>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
 
-  <div v-else>
+  <div>
     <HeaderComp />
     <RouterView />
     <div class="cursor-dot" ref="cursorDot"></div>
@@ -204,7 +204,7 @@ setTimeout(() => {
     background-color: red;
     border: 2px solid red;
     transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
-    /* mix-blend-mode: lighten; */
+    mix-blend-mode: exclusion;
   }
 
   .cursor-outline {

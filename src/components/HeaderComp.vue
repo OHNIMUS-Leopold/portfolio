@@ -26,7 +26,8 @@ onMounted(() => {
     <header class="fixed top-0 left-0 z-10 flex">
         <nav class="font-proto font-light">
             <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/about">About</RouterLink>
+            <RouterLink to="/projects">Projects</RouterLink>
+            <RouterLink to="/contact">Contact</RouterLink>
         </nav>
 
         <div>
