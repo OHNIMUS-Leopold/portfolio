@@ -1,9 +1,36 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import type { Project } from '@/types';
+
+const db = getFirestore();
+const projects = ref<Project[]>([]);
+
+onMounted(async () => {
+  const projectsCollection = collection(db, 'projects');
+  const querySnapshot = await getDocs(projectsCollection);
+  const projectsData: Project[] = [];
+  querySnapshot.forEach((doc) => {
+    const project = doc.data() as Project;
+    projectsData.push({ ...project, id: doc.id });
+  });
+  projects.value = projectsData;
+});
 </script>
 
 <template>
     
   <div>
+    <div class="mt-8 ml-5">
+      <h1>Liste des projets</h1>
+      <ul class="list-disc">
+        <li v-for="project in projects" :key="project.id">
+          <a :href="project.link">{{ project.name }}</a>
+        </li>
+      </ul>
+    </div>
+
+
     <!-- <div class="blob-cont">
         <div class="yellow blob"></div>
         <div class="red blob"></div>

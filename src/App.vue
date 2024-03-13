@@ -204,7 +204,7 @@ setTimeout(() => {
     background-color: red;
     border: 2px solid red;
     transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
-    mix-blend-mode: exclusion;
+    /* mix-blend-mode: exclusion; */
   }
 
   .cursor-outline {
