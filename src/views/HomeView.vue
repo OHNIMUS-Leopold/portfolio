@@ -25,7 +25,9 @@ onMounted(async () => {
       <h1>Liste des projets</h1>
       <ul class="list-disc">
         <li v-for="project in projects" :key="project.id">
-          <a :href="project.link">{{ project.name }}</a>
+          <RouterLink :to="{ name: 'single-project', params: { name: project.name } }">
+            {{ project.name }}
+          </RouterLink>
         </li>
       </ul>
     </div>

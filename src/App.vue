@@ -28,11 +28,11 @@ const startLoading = () => {
   setTimeout(() => {
     showProgress.value = false;
     showGreeting.value = true;
-  }, 4000);
+  }, 2500);
 
   setTimeout(() => {
     isLoading.value = false;
-  }, 7000);
+  }, 5000);
 };
 
 window.addEventListener("mousemove", function (e) {
@@ -72,9 +72,13 @@ onMounted(() => {
       element.addEventListener('click', () => {
         cursorDot.value?.classList.add('is-clicked');
         cursorOutline.value?.classList.add('is-clicked');
+        cursorDot.value?.classList.add('is-active');
+        cursorOutline.value?.classList.add('is-active');
         setTimeout(() => {
           cursorDot.value?.classList.remove('is-clicked');
           cursorOutline.value?.classList.remove('is-clicked');
+          cursorDot.value?.classList.remove('is-active');
+          cursorOutline.value?.classList.remove('is-active');
         }, 300);
       });
     });
@@ -82,7 +86,7 @@ onMounted(() => {
 setTimeout(() => {
   addEventListeners();
   console.log('elSTART');
-}, 7100);
+}, 5500);
 
 
   formatDate();
@@ -95,7 +99,7 @@ setTimeout(() => {
       });
       text.start();
       text.reveal(2000);
-    }, 4000);  // Démarrer l'animation après 4 secondes
+    }, 2500);  // Démarrer l'animation 
   });
 
   nextTick(() => {
@@ -106,8 +110,8 @@ setTimeout(() => {
         speed: 120
       });
       text2.start();
-      text2.reveal(2000);
-    }, 4000);  // Démarrer l'animation après 4 secondes
+      text2.reveal(1000);
+    }, 2500);  // Démarrer l'animation 
   });
 
   router.beforeEach((to, from, next) => {
@@ -117,6 +121,9 @@ setTimeout(() => {
       element.removeEventListener('mouseleave', addEventListeners);
       element.removeEventListener('click', addEventListeners);
     });
+
+    cursorDot.value?.classList.remove('is-active', 'is-clicked');
+    cursorOutline.value?.classList.remove('is-active', 'is-clicked');
 
     next();
     setTimeout(() => {
@@ -132,7 +139,7 @@ setTimeout(() => {
     if (showProgress.value) {
       loadingProgress.value += 1;
       if (loadingProgress.value < 100) {
-        setTimeout(updateProgress, 30);
+        setTimeout(updateProgress, 20);
       }
     }
   };
