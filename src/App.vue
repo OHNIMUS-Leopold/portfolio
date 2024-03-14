@@ -129,7 +129,7 @@ setTimeout(() => {
     setTimeout(() => {
       addEventListeners();
       console.log('elROUTE');
-    }, 200);
+    }, 500);
   });
 
 

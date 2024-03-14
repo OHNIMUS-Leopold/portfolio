@@ -9,12 +9,15 @@ const projects = ref<Project[]>([]);
 onMounted(async () => {
   const projectsCollection = collection(db, 'projects');
   const querySnapshot = await getDocs(projectsCollection);
-  const projectsData: Project[] = [];
+  const projectsList: Project[] = [];
   querySnapshot.forEach((doc) => {
     const project = doc.data() as Project;
-    projectsData.push({ ...project, id: doc.id });
+    projectsList.push({ ...project, id: doc.id });
   });
-  projects.value = projectsData;
+
+  projectsList.sort((a, b) => a.year - b.year);
+
+  projects.value = projectsList;
 });
 </script>
 
