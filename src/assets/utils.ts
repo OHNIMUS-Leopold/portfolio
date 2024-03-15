@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 
-export const themes = ['theme-dark1', 'theme-dark2']; 
+export const themes = ['theme-1', 'theme-2', 'theme-3']; 
 export const currentTheme = ref(themes[Math.floor(Math.random() * themes.length)]);
 
 

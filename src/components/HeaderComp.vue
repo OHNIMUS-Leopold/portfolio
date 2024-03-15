@@ -1,25 +1,20 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { themes, currentTheme } from '../assets/utils';
 
 const isRotated = ref(false);
 
-// const themes = ['theme-dark1', 'theme-dark2']; 
-// const currentTheme = ref(themes[Math.floor(Math.random() * themes.length)]);
-
 function toggleTheme() {
   isRotated.value = !isRotated.value;
-  const nextTheme = themes.find(theme => theme !== currentTheme.value);
-  if (nextTheme) {
-    currentTheme.value = nextTheme;
-    document.body.className = currentTheme.value;
+  let nextThemeIndex = Math.floor(Math.random() * themes.length);
+  while (themes[nextThemeIndex] === currentTheme.value) {
+    nextThemeIndex = Math.floor(Math.random() * themes.length);
   }
+  currentTheme.value = themes[nextThemeIndex];
+  document.body.className = currentTheme.value;
 }
 
-onMounted(() => {
-  document.body.className = currentTheme.value;
-});
 </script>
 
 <template>

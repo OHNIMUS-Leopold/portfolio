@@ -33,16 +33,22 @@
   
 
 
-.theme-dark1 {
+.theme-1 {
     --bg-color: #ffffff;
     --text-color: #ff0000;
     --accent-color: #ff0000;
 }
 
-.theme-dark2 {
+.theme-2 {
     --bg-color: #00ff00;
     --text-color: #ff00ff;
     --accent-color: #0000ff;
+}
+
+.theme-3 {
+    --bg-color: black;
+    --text-color: yellow;
+    --accent-color: #ff0000;
 }
 
 
