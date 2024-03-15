@@ -1,40 +1,27 @@
-# portfolio
+# Léopold OHNIMUS's Portfolio
 
-This template should help get you started developing with Vue 3 in Vite.
+Welcome to my portfolio repository! This project aims to showcase myself through my various accomplishments in an interactive and engaging manner.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Presentation of myself and my projects
+- Description of my projects and associated technologies
+- Contact form for professional opportunities
+- Integration of social media for contacting or following me
 
-## Type Support for `.vue` Imports in TS
+## Technologies Used
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+- VueJS (JavaScript Framework) for page and component structuring
+- TailwindCSS (CSS Framework) for site styling
+- TypeScript for database interactions and animations
+- Firebase (Google Database) for storing and updating project information
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Credits
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+This portfolio was developed by me, Léopold OHNIMUS, as part of my individual project for the 2nd semester of my 2nd year in the MMI program at IUT Nord Franche-Comté, in Montbéliard (France).
 
-## Customize configuration
+## Contact
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+For any questions or suggestions, feel free to contact me via the contact page of my [portfolio](#) or directly by email at the following address: [leopold.ohnimus02@orange.fr](mailto:leopold.ohnimus02@orange.fr).
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+Thank you for visiting my portfolio!
