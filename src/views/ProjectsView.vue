@@ -12,7 +12,7 @@ onMounted(() => {
 <template>
   <div class="font-proto font-light flex mt-28 space-x-5">
     <p class="">liste</p>
-    <p class="">ESSAI EFFET CSS</p>
+    <p class="text-[var(--accent-color)]">ESSAI EFFET CSS</p>
     <h1 data-value="HYPERPLEXED">HYPERPLEXED</h1>
     <h2 data-value="EXAMPLE">EXAMPLE</h2>
     <h3 data-value="TEXT">TEXT</h3>

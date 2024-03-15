@@ -31,24 +31,45 @@
 }
   
   
-
+/* Dark */
 
 .theme-1 {
-    --bg-color: #ffffff;
-    --text-color: #ff0000;
-    --accent-color: #ff0000;
+    --bg-color: #010505;
+    --text-color: #fbffff;
+    --accent-color: #d2af8e;
 }
 
 .theme-2 {
-    --bg-color: #00ff00;
-    --text-color: #ff00ff;
-    --accent-color: #0000ff;
+    --bg-color: #0a281c;
+    --text-color: #f5f0f3;
+    --accent-color: #f24603;
 }
 
 .theme-3 {
-    --bg-color: black;
-    --text-color: yellow;
-    --accent-color: #ff0000;
+    --bg-color: #140627;
+    --text-color: #f2f1e5;
+    --accent-color: #006ffc;
+}
+
+
+/* Light */
+
+.theme-4 {
+    --bg-color: #ffffff;
+    --text-color: #7154ab;
+    --accent-color: #a2a5c6;
+}
+
+.theme-5 {
+    --bg-color: #f2f3f3;
+    --text-color: #222526;
+    --accent-color: #2082f4;
+}
+
+.theme-6 {
+    --bg-color: #ffffff;
+    --text-color: #2d5261;
+    --accent-color: #739671;
 }
 
 
