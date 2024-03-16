@@ -64,7 +64,7 @@ const selectProject = (id: string) => {
   if (radioButton) {
     radioButton.checked = true;
   }
-};
+}; // @click="selectProject(project.id)"
 
 const showPreviousProject = () => {
   const currentIndex = projects.value.findIndex(project => project.id === selectedProjectId.value);
@@ -104,11 +104,13 @@ const showNextProject = () => {
           </div>
         </div>
       </div>
-      <div class="indicator">
-        <div v-for="project in projects" :key="project.id" class="circle" :class="{ 'active': selectedProjectId === project.id }" @click="selectProject(project.id)"></div>
+      <div class="flex items-center space-x-5">
+        <button class="font-noto text-xs font-semibold text-[var(--accent-color)]" @click="showPreviousProject">PREV</button>
+        <div class="indicator">
+          <div v-for="project in projects" :key="project.id" class="circle" :class="{ 'active': selectedProjectId === project.id }"></div>
+        </div>
+        <button class="font-noto text-xs font-semibold text-[var(--accent-color)]" @click="showNextProject">NEXT</button>
       </div>
-      <button @click="showPreviousProject">Projet précédent</button>
-      <button @click="showNextProject">Projet suivant</button>
     </div>
   </div>
 
@@ -122,14 +124,17 @@ const showNextProject = () => {
 .container {
     height: 300px;
     display: flex;
+    justify-content: center;
+    width: 643px;
 }
 
 .card {
-    width: 60px;
+    width: 40px;
+    min-width: 20px;
     background-size: cover;
     background-position: center center;
     overflow: hidden;
-    margin: 0 6px;
+    margin: 0 4px; /* calculés sur 5px */
     display: flex;
     align-items: flex-end;
     transition: .6s cubic-bezier(.28,-0.03,0,.99);
@@ -141,23 +146,23 @@ input {
 
 input:checked + label {
     width: 533px;
+    min-width: 450px;
 }
 
 .indicator {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    gap: 60px;
 }
 
 .circle {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: white;
-  margin: 5px;
+  width: 2px;
+  height: 4px;
+  background-color: var(--accent-color);
+  transition: .6s cubic-bezier(.28,-0.03,0,.99);
 }
 
 .circle.active {
-  background-color: red;
+  width: 34px;
 }
 </style>

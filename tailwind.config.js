@@ -11,7 +11,7 @@ module.exports = {
       },
 
       fontFamily: {
-        montserrat: "Montserrat, sans-serif",
+        noto: "Noto-Sans, sans-serif",
         proto : "Proto-Mono, sans-serif",
       },
       
