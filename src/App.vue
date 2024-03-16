@@ -200,7 +200,7 @@ setTimeout(() => {
   .cursor-dot {
     width: 12px;
     height: 12px;
-    background-color: red;
+    background-color: var(--accent-color);
     opacity: 0.8;
     transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
   }
@@ -208,8 +208,8 @@ setTimeout(() => {
   .cursor-dot.is-active {
     width: 50px;
     height: 50px;
-    background-color: red;
-    border: 2px solid red;
+    background-color: var(--accent-color);
+    border: 2px solid var(--accent-color);
     transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
     /* mix-blend-mode: exclusion; */
   }
@@ -217,7 +217,7 @@ setTimeout(() => {
   .cursor-outline {
     width: 50px;
     height: 50px;
-    border: 2px solid red;
+    border: 2px solid var(--accent-color);
     opacity: 0;
     transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
   }
@@ -248,7 +248,7 @@ setTimeout(() => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: red;
+    background-color: var(--accent-color);
     border-radius: 50%;
     opacity: 0.2;
     transition: width 0.3s ease-in-out, height 0.3s ease-in-out, opacity 0.3s ease-in-out;
