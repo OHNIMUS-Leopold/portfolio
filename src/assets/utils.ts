@@ -40,7 +40,7 @@ export function applyHoverEffect(element: HTMLElement): void {
       }
 
       iteration += 1 / 3;
-    }, 30);
+    }, 20);
 
     intervals.push(interval!);
   });
