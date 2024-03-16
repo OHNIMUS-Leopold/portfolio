@@ -57,7 +57,7 @@ onMounted(() => {
   document.body.className = currentTheme.value;
 
   const addEventListeners = () => {
-    const linksAndButtons = document.querySelectorAll('a, button'); 
+    const linksAndButtons = document.querySelectorAll('a, button, label'); 
     linksAndButtons.forEach(element => {
       element.addEventListener('mouseenter', () => {
         cursorDot.value?.classList.add('is-active');
@@ -115,7 +115,7 @@ setTimeout(() => {
   });
 
   router.beforeEach((to, from, next) => {
-    const linksAndButtons = document.querySelectorAll('a, button'); 
+    const linksAndButtons = document.querySelectorAll('a, button, label'); 
     linksAndButtons.forEach(element => {
       element.removeEventListener('mouseenter', addEventListeners);
       element.removeEventListener('mouseleave', addEventListeners);

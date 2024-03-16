@@ -1,10 +1,84 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
 import { initializeHoverAnimation } from '@/assets/utils'
+import { ref, onMounted } from 'vue';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
+import type { Project } from '@/types';
 
-onMounted(() => {
+const db = getFirestore();
+const projects = ref<Project[]>([]);
+
+onMounted(async () => {
+  const projectsCollection = collection(db, 'projects');
+  const querySnapshot = await getDocs(projectsCollection);
+  const projectsList: Project[] = [];
+  querySnapshot.forEach((doc) => {
+    const project = doc.data() as Project;
+    projectsList.push({ ...project, id: doc.id });
+  });
+
+  projectsList.sort((a, b) => a.year - b.year);
+
+  await Promise.all(projectsList.map(async (project) => {
+    const imageUrl = await getImageUrl(project.image);
+    project.imageUrl = imageUrl;
+  }));
+
+  projects.value = projectsList;
+
+  console.log(projects.value[0].imageUrl);
+
   initializeHoverAnimation();
+
+  if (projects.value.length > 0) {
+    selectedProjectId.value = projects.value[Math.floor(projects.value.length / 2)].id;
+  }
 });
+
+
+const getImageUrl = async (imageName: string): Promise<string> => {
+  try {
+    const storage = getStorage();
+    const imageRef = storageRef(storage, `projects/${imageName}`); 
+    return await getDownloadURL(imageRef);
+  } catch (error) {
+    console.error(`Error getting image URL for ${imageName}:`, error);
+    return '';
+  }
+};
+
+
+
+
+let selectedProjectId = ref<string | null>(null);
+
+const updateSelectedProjectId = (event: Event, id: string) => {
+  if ((event.target as HTMLInputElement).checked) {
+    selectedProjectId.value = id;
+  }
+};
+
+const selectProject = (id: string) => {
+  selectedProjectId.value = id;
+  const radioButton = document.getElementById(id) as HTMLInputElement;
+  if (radioButton) {
+    radioButton.checked = true;
+  }
+};
+
+const showPreviousProject = () => {
+  const currentIndex = projects.value.findIndex(project => project.id === selectedProjectId.value);
+  if (currentIndex > 0) {
+    selectProject(projects.value[currentIndex - 1].id);
+  }
+};
+
+const showNextProject = () => {
+  const currentIndex = projects.value.findIndex(project => project.id === selectedProjectId.value);
+  if (currentIndex < projects.value.length - 1) {
+    selectProject(projects.value[currentIndex + 1].id);
+  }
+};
 
 </script>
 
@@ -18,4 +92,72 @@ onMounted(() => {
     <h3 data-value="TEXT">TEXT</h3>
     <h4 data-value="EFFECT">EFFECT</h4>
   </div>
+
+
+  <div class="mt-32">
+    <div>
+      <div class="container">
+        <div class="contents carousel" v-for="(project, index) in projects" :key="project.id">
+          <div class="contents">
+            <input type="radio" name="slide" :id="project.id" :checked="index === Math.floor(projects.length / 2)" @change="updateSelectedProjectId($event, project.id)">
+            <label :for="project.id" class="card" :style="{ 'background-image': 'url(' + project.imageUrl + ')' }"></label>
+          </div>
+        </div>
+      </div>
+      <div class="indicator">
+        <div v-for="project in projects" :key="project.id" class="circle" :class="{ 'active': selectedProjectId === project.id }" @click="selectProject(project.id)"></div>
+      </div>
+      <button @click="showPreviousProject">Projet précédent</button>
+      <button @click="showNextProject">Projet suivant</button>
+    </div>
+  </div>
+
+
 </template>
+
+
+
+<style scoped>
+
+.container {
+    height: 300px;
+    display: flex;
+}
+
+.card {
+    width: 60px;
+    background-size: cover;
+    background-position: center center;
+    overflow: hidden;
+    margin: 0 6px;
+    display: flex;
+    align-items: flex-end;
+    transition: .6s cubic-bezier(.28,-0.03,0,.99);
+}
+
+input {
+    display: none;
+}
+
+input:checked + label {
+    width: 533px;
+}
+
+.indicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+  margin: 5px;
+}
+
+.circle.active {
+  background-color: red;
+}
+</style>

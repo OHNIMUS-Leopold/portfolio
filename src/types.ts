@@ -13,4 +13,5 @@ export interface Project {
     threejs: boolean;
     blender: boolean;
     image: string;
+    imageUrl: string;
 };
