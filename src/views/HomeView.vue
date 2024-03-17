@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { initializeHoverAnimation } from '@/assets/utils';
 import { ref, onMounted } from 'vue';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import type { Project } from '@/types';
@@ -7,6 +8,7 @@ const db = getFirestore();
 const projects = ref<Project[]>([]);
 
 onMounted(async () => {
+  initializeHoverAnimation();
   const projectsCollection = collection(db, 'projects');
   const querySnapshot = await getDocs(projectsCollection);
   const projectsList: Project[] = [];
@@ -49,7 +51,7 @@ onMounted(async () => {
 
 
 
-  <svg class="hidden">
+  <!-- <svg class="hidden">
     <filter id='noiseFilter'>
         <feTurbulence 
         type='fractalNoise' 
@@ -59,7 +61,7 @@ onMounted(async () => {
             <feComposite operator="in" in2="SourceGraphic" result="monoNoise"/>
             <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
     </filter>
-  </svg>
+  </svg> -->
 
 </template>
 

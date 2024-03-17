@@ -151,24 +151,28 @@ setTimeout(() => {
 <template>
 
   <transition name="fade">
-    <!-- <div v-if="isLoading" class="loading-screen" >
+    <div v-if="isLoading" class="loading-screen" >
       <div v-if="showProgress" class="loading-progress">
-        <p class="font-proto">{{ loadingProgress }}%</p>
+        <p class="font-proto text-[var(--accent-color)]">{{ loadingProgress }}%</p>
       </div>
       <div v-if="showGreeting" class="loading-greeting">
         <div>
-          <p class="data font-proto">{{ currentDate }}</p>
+          <p class="data font-proto text-[var(--accent-color)]">{{ currentDate }}</p>
           <br>
-          <p class="data2 font-proto">Léopold OHNIMUS</p>
+          <p class="data2 font-proto text-[var(--accent-color)]">Léopold OHNIMUS</p>
         </div>
       </div>
-    </div> -->
+    </div>
 
 
 
-  <div>
+  <div v-else>
     <HeaderComp />
-    <RouterView />
+    <RouterView v-slot="{ Component }">
+      <transition name="page-opacity">
+        <component :is="Component" />
+      </transition>
+    </RouterView>
     <div class="cursor-dot" ref="cursorDot"></div>
     <div class="cursor-outline" ref="cursorOutline"></div>
   </div>
@@ -280,7 +284,7 @@ setTimeout(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
+  background-color: var(--bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -302,5 +306,36 @@ setTimeout(() => {
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+
+
+
+
+
+.page-opacity-enter-active {
+  animation: anim 1s ease-in;
+}
+
+@keyframes anim {
+  0% { opacity: 0; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.page-opacity-leave-active {
+  animation: animU 0.3s ease-in;
+}
+
+@keyframes animU {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+
+body {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
 
 </style>

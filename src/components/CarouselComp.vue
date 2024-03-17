@@ -27,7 +27,7 @@ onMounted(async () => {
 
   projects.value = projectsList;
 
-  console.log(projects.value[0].imageUrl);
+  // console.log(projects.value[0].imageUrl);
 
   initializeHoverAnimation();
 
@@ -139,6 +139,7 @@ const selectedProjectInfo = computed(() => {
     display: flex;
     align-items: flex-end;
     transition: .6s cubic-bezier(.28,-0.03,0,.99);
+    box-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--text-color);
 }
 
 input {
