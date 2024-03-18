@@ -97,7 +97,7 @@ const selectedProjectInfo = computed(() => {
             <div class="pr-10 xl:pr-40 self-end mb-8">
                 <h1 class="mb-4 font-noto text-4xl font-[500] uppercase text-[var(--accent-color)]">{{ selectedProjectInfo?.name }}</h1>
                 <div class="flex flex-wrap font-proto font-semibold text-base mb-12 text-[var(--accent-color)]">
-                    <RouterLink data-value="Project Info" class="btn mb-2 mr-2" v-if="selectedProjectInfo?.name" :to="{ name: 'single-project', params: { name: selectedProjectInfo.name } }">
+                    <RouterLink data-value="Project Info" class="btn mb-2 mr-8" v-if="selectedProjectInfo?.name" :to="{ name: 'single-project', params: { name: selectedProjectInfo.name } }">
                         Project Info
                     </RouterLink>
                     <a data-value="Visit ->" class="btn mb-2" v-if="selectedProjectInfo?.link" :href="selectedProjectInfo?.link">
