@@ -91,14 +91,26 @@ const selectedProjectInfo = computed(() => {
 </script>
 
 <template>
-    <div class="mt-32">
-        <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-5">
-                <button class="font-noto text-xs font-semibold text-[var(--accent-color)]" @click="showPreviousProject">PREV</button>
-                <div class="indicator">
-                    <div v-for="project in projects" :key="project.id" class="circle" :class="{ 'active': selectedProjectId === project.id }"></div>
+    <div class="mt-2">
+        <!-- <div class="flex justify-between "> -->
+        <div class="grille">
+            <div class="pr-10 xl:pr-40 self-end mb-8">
+                <h1 class="mb-4 font-noto text-4xl font-[500] uppercase text-[var(--accent-color)]">{{ selectedProjectInfo?.name }}</h1>
+                <div class="flex flex-wrap font-proto font-semibold text-base mb-12 text-[var(--accent-color)]">
+                    <RouterLink data-value="Project Info" class="btn mb-2 mr-2" v-if="selectedProjectInfo?.name" :to="{ name: 'single-project', params: { name: selectedProjectInfo.name } }">
+                        Project Info
+                    </RouterLink>
+                    <a data-value="Visit ->" class="btn mb-2" v-if="selectedProjectInfo?.link" :href="selectedProjectInfo?.link">
+                        Visit ->
+                    </a>
                 </div>
-                <button class="font-noto text-xs font-semibold text-[var(--accent-color)]" @click="showNextProject">NEXT</button>
+                <div class="flex items-center justify-between pl-[2px]">
+                  <button data-value="PREV" class="font-proto text-xs font-semibold text-[var(--accent-color)]" @click="showPreviousProject">PREV</button>
+                  <div class="indicator">
+                      <div v-for="project in projects" :key="project.id" class="circle" :class="{ 'active': selectedProjectId === project.id }"></div>
+                  </div>
+                  <button data-value="NEXT" class="font-proto text-xs font-semibold text-[var(--accent-color)]" @click="showNextProject">NEXT</button>
+                </div>
             </div>
             <div class="container">
                 <div class="contents carousel" v-for="(project, index) in projects" :key="project.id">
@@ -109,23 +121,23 @@ const selectedProjectInfo = computed(() => {
                 </div>
             </div>
         </div>
-        <div>
-            <RouterLink data-value="Project ->" class="btn" v-if="selectedProjectInfo?.name" :to="{ name: 'single-project', params: { name: selectedProjectInfo.name } }">
-                Project ->
-            </RouterLink>
-        </div>
-
     </div>
 </template>
 
 
 
 <style scoped>
+.grille {
+  display: grid;
+  grid-template-columns: auto 650px;
+} 
+
 
 .container {
     height: 300px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end; /* center */
+    justify-self: end;
     width: 643px;
 }
 
@@ -152,9 +164,7 @@ input:checked + label {
 }
 
 .indicator {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
+    display: contents;
 }
 
 .circle {
@@ -180,25 +190,23 @@ input:checked + label {
 
 .btn{
   background: none;
-  border: 1px solid var(--text-color);
-  padding: 4px 10px;
-  min-width: 200px;
+  border: 1px solid var(--accent-color);
+  padding: 2px 10px;
   position: relative;
   border-radius: 4px;
-  font-family: Proto-Mono, sans-serif;
-  font-size: 14px;
 }
 .btn:hover{
   color: var(--bg-color);
 }
 .btn::before{
+  border-radius: 2px;
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background: var(--text-color);
+  background: var(--accent-color);
   z-index: -1;
   transition: transform 0.3s;
   transform-origin: 0 0;

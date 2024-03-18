@@ -18,14 +18,17 @@ function toggleTheme() {
 </script>
 
 <template>
-    <header class="fixed top-0 left-0 z-10 flex items-center">
+    <header class="fixed top-0 left-0 z-10 pt-[52px] px-11 flex justify-between w-full">
+
+      <div class="font-proto font-semibold text-5xl text-[var(--accent-color)]">
+        <RouterLink to="/" data-value="Léopold OHNIMUS">
+          Léopold OHNIMUS
+        </RouterLink>
+      </div>
+
+      <div class="flex gap-5">
         <nav class="font-proto font-semibold text-sm">
             <ul class="flex space-x-5">
-              <RouterLink  class="btn"  to="/">
-                <li data-value="Home">
-                  Home
-                </li>
-              </RouterLink>              
               <RouterLink class="btn" to="/projects">
                 <li data-value="Projects">
                   Projects
@@ -38,10 +41,10 @@ function toggleTheme() {
               </RouterLink>
             </ul>
         </nav>
-
         <div class="contents">
             <button class="switch-btn" :class="{ rotated: isRotated }" @click="toggleTheme"></button>
         </div>
+      </div>
     </header>
 </template>
 
@@ -50,8 +53,8 @@ function toggleTheme() {
 <style scoped>
 
 .switch-btn {
-  width: 32px;
-  height: 32px;
+  width: 21px; /* 32px */
+  height: 21px;
   background-color: var(--bg-color);
   border: 1px solid var(--text-color); /* 2px */
   border-radius: 5px;
@@ -74,18 +77,18 @@ function toggleTheme() {
   left: 0;
   width: 0;
   height: 0;
-  border-top: 16px solid var(--text-color);   /* 15px */
-  border-right: 16px solid transparent; 
-  border-bottom: 16px solid transparent; 
-  border-left: 16px solid var(--text-color);   
+  border-top: 11px solid var(--text-color);   /* 15px puis 16*/
+  border-right: 11px solid transparent; 
+  border-bottom: 11px solid transparent; 
+  border-left: 11px solid var(--text-color);   
   transition: all 0.2s ease; 
 }
 
 .switch-btn:hover::after {
-  border-top: 23px solid var(--text-color); 
-  border-right: 23px solid transparent; 
-  border-bottom: 23px solid transparent; 
-  border-left: 23px solid var(--text-color);   
+  border-top: 16px solid var(--text-color);   /* 23px */
+  border-right: 16px solid transparent; 
+  border-bottom: 16px solid transparent; 
+  border-left: 16px solid var(--text-color);   
 }
 
 

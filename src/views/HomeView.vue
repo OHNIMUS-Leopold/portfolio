@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { initializeHoverAnimation } from '@/assets/utils';
+import CarouselComp from '@/components/CarouselComp.vue';
 import { ref, onMounted } from 'vue';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import type { Project } from '@/types';
@@ -25,162 +26,41 @@ onMounted(async () => {
 
 <template>
     
-  <div>
-    <div class="mt-8 ml-5">
-      <h1>Liste des projets</h1>
-      <ul class="list-disc">
-        <li v-for="project in projects" :key="project.id">
-          <RouterLink :to="{ name: 'single-project', params: { name: project.name } }">
-            {{ project.name }}
-          </RouterLink>
-        </li>
-      </ul>
+  <div class="">
+
+    <div class="col-span-11 grid grid-cols-10">
+      <div class="col-span-1"></div>
+      <div class="col-span-4 mt-14">
+        <p class="font-proto text-xs font-medium leading-6">
+          Léopold OHNIMUS is currently studying multimedia and internet technologies. He is particularly interested in web development and aims to become a fullstack web developer in the future. 
+          <br>
+          Based in France.
+        </p>
+      </div>
+      <div class="col-span-3"></div>
+      <div class="col-span-2 mt-20 font-proto text-3xl font-semibold text-[var(--accent-color)] text-right">
+        <p>Portfolio</p>
+        <p>/2024</p>
+      </div>
     </div>
 
 
-    <!-- <div class="blob-cont">
-        <div class="yellow blob"></div>
-        <div class="red blob"></div>
-        <div class="green blob"></div>
-    </div> -->
-    <div class="p-40"><a href="https://youtube.com">lien</a></div>
+
+    <CarouselComp class="col-span-11" />
+    <!-- <h1>Liste des projets</h1>
+    <ul class="list-disc">
+      <li v-for="project in projects" :key="project.id">
+        <RouterLink :to="{ name: 'single-project', params: { name: project.name } }">
+          {{ project.name }}
+        </RouterLink>
+      </li>
+    </ul> -->
+
   </div>
-
-
-
-
-
-
-  <!-- <svg class="hidden">
-    <filter id='noiseFilter'>
-        <feTurbulence 
-        type='fractalNoise' 
-        baseFrequency='0.6' 
-        stitchTiles='stitch'/>
-        <feColorMatrix in="colorNoise" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" />
-            <feComposite operator="in" in2="SourceGraphic" result="monoNoise"/>
-            <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
-    </filter>
-  </svg> -->
 
 </template>
 
 
-
-
-
-
-
-
-
 <style scoped>
-
-
-
-.fond {
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
-  background-color: #F0DBA5;
-  display: flex;
-  justify-content: flex-end;
-}
-
-
-.fond::before,
-.fond::after {
-  position: absolute;
-  left: 0;
-  top: 0;
-  content: '';
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-
-  opacity: 40%;
-}
-
-.fond::before {
-  /* background: black;
-  opacity: 0.12; */
-  background: #878787;
-  filter: url(#noiseFilter);
-}
-
-
-/* Blobs */
-.blob-cont {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  height: 500px;
-  width: 500px;
-  position: relative;
-  right: 5em;
-}
-
-
-.blob {
-  border-radius: 100px;
-  filter: blur(60px);
-}
-
-.yellow {
-  background-color: #EDB74D;
-  position: absolute;
-  top: 200px;
-  left: 100px;
-  height: 200px;
-  width: 200px;
-  
-  animation: yellow-anim 8s infinite ease;
-}
-
-.green {
-  background-color: #6FB18A;
-  position: absolute;
-  top: 80px;
-  right: -20px;
-  height: 200px;
-  width: 250px;
-  
-  animation: green-anim 8s infinite ease;
-}
-
-.red {
-  background-color: #EB6666;
-  position: absolute;
-  right: 0;
-  top: 300px;
-  height: 250px;
-  width: 200px;
-  
-  animation: red-anim 8s infinite linear;
-}
-
-@keyframes yellow-anim {
-  0% {top: 200px; left: 100px; transform: scale(1);}
-  30% {top: 300px; left: 150px; transform: scale(1.2);}
-  60% {top: 100px; left: 200px; transform: scale(1.3);}
-  100% {top: 200px; left: 100px; transform: scale(1);}
-}
-
-@keyframes green-anim {
-  0% {top: 80px; right: -20px; transform: scale(1.2);}
-  30% {top: 300px; right: -20px;transform: scale(1);}
-  60% {top: 200px; right: 100px;transform: scale(1);}
-  100% {top: 80px; right: -20px; transform: scale(1.2);}
-}
-
-@keyframes red-anim {
-  0% {top: 250px; right: 0px; transform: scale(1);}
-  30% {top: 150px; right: 150px;transform: scale(1.4);}
-  60% {top: 250px; right: 100px;transform: scale(1);}
-  100% {top: 250px; right: 0px; transform: scale(1);}
-}
-
-
 
 </style>
