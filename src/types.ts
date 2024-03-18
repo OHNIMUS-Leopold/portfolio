@@ -12,6 +12,12 @@ export interface Project {
     illustrator: boolean;
     threejs: boolean;
     blender: boolean;
+    vuejs: boolean;
+    tailwind: boolean;
+    netlify: boolean;
+    pocketbase: boolean;
+    supabase: boolean;
+    firebase: boolean;
     image: string;
     imageUrl: string;
 };

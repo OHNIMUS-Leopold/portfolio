@@ -1,4 +1,18 @@
 <script setup lang="ts">
+import BlenderIcon from '@/components/icon/BlenderIcon.vue';
+import GithubIcon from '@/components/icon/GithubIcon.vue';
+import FigmaIcon from '@/components/icon/FigmaIcon.vue';
+import FirebaseIcon from '@/components/icon/FirebaseIcon.vue';
+import IllustratorIcon from '@/components/icon/IllustratorIcon.vue';
+// import LinkIcon from '@/components/icon/LinkIcon.vue';
+import NetlifyIcon from '@/components/icon/NetlifyIcon.vue';
+import PhotoshopIcon from '@/components/icon/PhotoshopIcon.vue';
+import PocketbaseIcon from '@/components/icon/PocketbaseIcon.vue';
+import SupabaseIcon from '@/components/icon/SupabaseIcon.vue';
+import TailwindIcon from '@/components/icon/TailwindIcon.vue';
+import ThreejsIcon from '@/components/icon/ThreejsIcon.vue';
+import VuejsIcon from '@/components/icon/VuejsIcon.vue';
+import WordpressIcon from '@/components/icon/WordpressIcon.vue';
 import { initializeHoverAnimation } from '@/assets/utils'
 import { ref, onMounted, computed, onUpdated } from 'vue';
 import { RouterLink } from 'vue-router';
@@ -120,6 +134,25 @@ const selectedProjectInfo = computed(() => {
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="flex">
+            <BlenderIcon v-if="selectedProjectInfo?.blender === true" class="h-10" />
+            <a v-if="selectedProjectInfo?.github !== ''" :href="selectedProjectInfo?.github" class="contents">
+              <GithubIcon class="h-10 onclick bg-white rounded-full" />
+            </a>
+            <a v-if="selectedProjectInfo?.figma !== ''" :href="selectedProjectInfo?.figma" class="contents">
+              <FigmaIcon class="h-10 onclick" />
+            </a>
+            <FirebaseIcon v-if="selectedProjectInfo?.firebase === true" class="h-10" /> 
+            <IllustratorIcon v-if="selectedProjectInfo?.illustrator === true" class="h-10" />
+            <NetlifyIcon v-if="selectedProjectInfo?.netlify === true" class="h-10" />
+            <PhotoshopIcon v-if="selectedProjectInfo?.photoshop=== true" class="h-10" />
+            <PocketbaseIcon v-if="selectedProjectInfo?.pocketbase === true" class="h-10" />
+            <SupabaseIcon v-if="selectedProjectInfo?.supabase === true" class="h-10" />
+            <TailwindIcon v-if="selectedProjectInfo?.tailwind === true" class="h-10" />
+            <ThreejsIcon v-if="selectedProjectInfo?.threejs === true" class="h-10" />
+            <VuejsIcon v-if="selectedProjectInfo?.vuejs === true" class="h-10" />
+            <WordpressIcon v-if="selectedProjectInfo?.wordpress === true" class="h-10 bg-white rounded-full" />
         </div>
     </div>
 </template>
