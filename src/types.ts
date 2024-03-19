@@ -18,6 +18,9 @@ export interface Project {
     pocketbase: boolean;
     supabase: boolean;
     firebase: boolean;
+    html: boolean;
+    css: boolean;
+    javascript: boolean;
     image: string;
     imageUrl: string;
 };

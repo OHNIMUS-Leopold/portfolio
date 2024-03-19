@@ -13,6 +13,9 @@ import TailwindIcon from '@/components/icon/TailwindIcon.vue';
 import ThreejsIcon from '@/components/icon/ThreejsIcon.vue';
 import VuejsIcon from '@/components/icon/VuejsIcon.vue';
 import WordpressIcon from '@/components/icon/WordpressIcon.vue';
+import HtmlIcon from '@/components/icon/HtmlIcon.vue';
+import CssIcon from '@/components/icon/CssIcon.vue';
+import JavascriptIcon from '@/components/icon/JavascriptIcon.vue';
 import { initializeHoverAnimation } from '@/assets/utils'
 import { ref, onMounted, computed, onUpdated } from 'vue';
 import { RouterLink } from 'vue-router';
@@ -153,6 +156,9 @@ const selectedProjectInfo = computed(() => {
             <ThreejsIcon v-if="selectedProjectInfo?.threejs === true" class="h-10" />
             <VuejsIcon v-if="selectedProjectInfo?.vuejs === true" class="h-10" />
             <WordpressIcon v-if="selectedProjectInfo?.wordpress === true" class="h-10 bg-white rounded-full" />
+            <HtmlIcon v-if="selectedProjectInfo?.html === true" class="h-10" />
+            <CssIcon v-if="selectedProjectInfo?.css === true" class="h-10" />
+            <JavascriptIcon v-if="selectedProjectInfo?.javascript === true" class="h-10" />
         </div>
     </div>
 </template>
