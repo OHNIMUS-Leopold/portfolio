@@ -133,7 +133,7 @@ const selectedProjectInfo = computed(() => {
                 <div class="contents carousel" v-for="(project, index) in projects" :key="project.id">
                     <div class="contents">
                         <input type="radio" name="slide" :id="project.id" :checked="index === Math.floor(projects.length / 2)" @change="updateSelectedProjectId($event, project.id)">
-                        <label :for="project.id" class="card" :style="{ 'background-image': 'url(' + project.imageUrl + ')' }"></label>
+                        <label :for="project.id" class="card labelimg" :style="{ 'background-image': 'url(' + project.imageUrl + ')' }"></label>
                     </div>
                 </div>
             </div>
