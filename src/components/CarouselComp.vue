@@ -16,6 +16,7 @@ import WordpressIcon from '@/components/icon/WordpressIcon.vue';
 import HtmlIcon from '@/components/icon/HtmlIcon.vue';
 import CssIcon from '@/components/icon/CssIcon.vue';
 import JavascriptIcon from '@/components/icon/JavascriptIcon.vue';
+import PhpIcon from './icon/PhpIcon.vue';
 import { initializeHoverAnimation } from '@/assets/utils'
 import { ref, onMounted, computed, onUpdated } from 'vue';
 import { RouterLink } from 'vue-router';
@@ -111,8 +112,8 @@ const selectedProjectInfo = computed(() => {
     <div class="mt-2">
         <!-- <div class="flex justify-between "> -->
         <div class="grille">
-            <div class="pr-10 xl:pr-40 self-end mb-8">
-                <h1 class="mb-4 font-noto text-4xl font-[500] uppercase text-[var(--accent-color)]">{{ selectedProjectInfo?.name }}</h1>
+            <div class="pr-10 xl:pr-40 self-end mb-12">
+                <h1 class="mb-4 font-noto text-3xl font-[500] uppercase text-[var(--accent-color)]">{{ selectedProjectInfo?.name }}</h1>
                 <div class="flex flex-wrap font-proto font-semibold text-base mb-12 text-[var(--accent-color)]">
                     <RouterLink data-value="Project Info" class="btn mb-2 mr-8" v-if="selectedProjectInfo?.name" :to="{ name: 'single-project', params: { name: selectedProjectInfo.name } }">
                         Project Info
@@ -138,32 +139,65 @@ const selectedProjectInfo = computed(() => {
                 </div>
             </div>
         </div>
-        <div class="flex">
-            <BlenderIcon v-if="selectedProjectInfo?.blender === true" class="h-10" />
-            <a v-if="selectedProjectInfo?.github !== ''" :href="selectedProjectInfo?.github" class="contents">
-              <GithubIcon class="h-10 onclick bg-white rounded-full" />
-            </a>
-            <a v-if="selectedProjectInfo?.figma !== ''" :href="selectedProjectInfo?.figma" class="contents">
-              <FigmaIcon class="h-10 onclick" />
-            </a>
-            <FirebaseIcon v-if="selectedProjectInfo?.firebase === true" class="h-10" /> 
-            <IllustratorIcon v-if="selectedProjectInfo?.illustrator === true" class="h-10" />
-            <NetlifyIcon v-if="selectedProjectInfo?.netlify === true" class="h-10" />
-            <PhotoshopIcon v-if="selectedProjectInfo?.photoshop=== true" class="h-10" />
-            <PocketbaseIcon v-if="selectedProjectInfo?.pocketbase === true" class="h-10" />
-            <SupabaseIcon v-if="selectedProjectInfo?.supabase === true" class="h-10" />
-            <TailwindIcon v-if="selectedProjectInfo?.tailwind === true" class="h-10" />
-            <ThreejsIcon v-if="selectedProjectInfo?.threejs === true" class="h-10" />
-            <VuejsIcon v-if="selectedProjectInfo?.vuejs === true" class="h-10" />
-            <WordpressIcon v-if="selectedProjectInfo?.wordpress === true" class="h-10 bg-white rounded-full" />
-            <HtmlIcon v-if="selectedProjectInfo?.html === true" class="h-10" />
-            <CssIcon v-if="selectedProjectInfo?.css === true" class="h-10" />
-            <JavascriptIcon v-if="selectedProjectInfo?.javascript === true" class="h-10" />
+        <div class="flex justify-between space-x-12">
+          <div class="mt-12 grillefoot m-auto">
+              <HtmlIcon v-if="selectedProjectInfo?.html === true" class="h-6 aspect-square" />
+              <CssIcon v-if="selectedProjectInfo?.css === true" class="h-6 aspect-square" />
+              <JavascriptIcon v-if="selectedProjectInfo?.javascript === true" class="h-6 aspect-square" />
+              <VuejsIcon v-if="selectedProjectInfo?.vuejs === true" class="h-6 aspect-square" />
+              <TailwindIcon v-if="selectedProjectInfo?.tailwind === true" class="h-6 aspect-square" />
+              <a v-if="selectedProjectInfo?.github !== ''" :href="selectedProjectInfo?.github" class="contents">
+                <GithubIcon class="h-6 aspect-square onclick bg-white rounded-full" />
+              </a>
+              <NetlifyIcon v-if="selectedProjectInfo?.netlify === true" class="h-6 aspect-square" />
+              <WordpressIcon v-if="selectedProjectInfo?.wordpress === true" class="h-6 aspect-square bg-white rounded-full" />
+              <PhpIcon v-if="selectedProjectInfo?.php === true" class="h-6 aspect-square" />
+              <FirebaseIcon v-if="selectedProjectInfo?.firebase === true" class="h-6 aspect-square" />
+              <SupabaseIcon v-if="selectedProjectInfo?.supabase === true" class="h-6 aspect-square" />
+              <PocketbaseIcon v-if="selectedProjectInfo?.pocketbase === true" class="h-6 bg-white rounded-tl-sm rounded-br-sm rounded-tr-[10px] rounded-bl-[10px] aspect-square" />
+              <ThreejsIcon v-if="selectedProjectInfo?.threejs === true" class="h-6 aspect-square" />
+              <BlenderIcon v-if="selectedProjectInfo?.blender === true" class="h-6 aspect-square" />
+              <a v-if="selectedProjectInfo?.figma !== ''" :href="selectedProjectInfo?.figma" class="contents">
+                <FigmaIcon class="h-6 aspect-square onclick" />
+              </a>
+              <PhotoshopIcon v-if="selectedProjectInfo?.photoshop=== true" class="h-6 aspect-square" />
+              <IllustratorIcon v-if="selectedProjectInfo?.illustrator === true" class="h-6 aspect-square" />
+          </div>
+          <div class="mt-8 grilletext w-[900px] items-start my-auto">
+            <nav class="contents">
+              <ul class="contents font-proto text-xs font-semibold m-auto">
+                <li>Year</li>
+                <li>Agency</li>
+                <li>Role</li>
+                <li>More</li>
+              </ul>
+            </nav>
+            <div class="contents text-xs font-noto uppercase font-[500] items-start m-auto">
+              <p class="text-2xl " v-if="selectedProjectInfo?.year">{{ selectedProjectInfo?.year }}</p>
+              <div class="">
+                <div v-if="selectedProjectInfo?.agency">
+                  <p>{{ selectedProjectInfo?.agency }}</p>
+                </div>
+                <div v-else>
+                  <p>// N/A</p>
+                </div>
+              </div>
+              <p class="" v-if="selectedProjectInfo?.role">{{ selectedProjectInfo?.role }}</p>
+              <div class="">
+                <div v-if="selectedProjectInfo?.comment">
+                  <p>{{ selectedProjectInfo?.comment }}</p>
+                </div>
+                <div v-else>
+                  <p>N/A</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
 </template>
 
-
+<!-- augmenter width ca va diminuer l'autre -->
 
 <style scoped>
 .grille {
@@ -171,6 +205,25 @@ const selectedProjectInfo = computed(() => {
   grid-template-columns: auto 650px;
 } 
 
+.grillefoot {
+  /* display: grid;
+  grid-template-columns: repeat(7, minmax(min-content, max-content));
+  gap: 12px;  */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 300px;
+  flex-wrap: wrap;
+}
+
+.grilletext {
+  display: grid;
+  /* grid-template-columns: 100px 22% 22% 34%; */
+  grid-template-columns: 100px 20% 24% 34%;
+  justify-content: end;
+  gap: 20px;
+}
 
 .container {
     height: 300px;
@@ -202,6 +255,12 @@ input:checked + label {
     min-width: 450px;
 }
 
+@media (max-width: 1024px) {
+  label {
+    cursor: pointer;
+  }
+}
+
 .indicator {
     display: contents;
 }
@@ -214,7 +273,7 @@ input:checked + label {
 }
 
 .circle.active {
-  width: 34px;
+  width: 54px;
 }
 
 
@@ -259,5 +318,17 @@ input:checked + label {
 }
 
 
+li {
+  display: flex;
+  align-items: center;
+}
 
+li::before {
+  content: "";
+  width: 0.3rem;
+  height: 0.3rem;
+  /* margin-top: 1px; */
+  margin-right: 6px;
+  background: var(--text-color);
+}
 </style>

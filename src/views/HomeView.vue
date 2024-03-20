@@ -38,9 +38,9 @@ onMounted(async () => {
         </p>
       </div>
       <div class="col-span-3"></div>
-      <div class="col-span-2 mt-20 font-proto text-3xl font-semibold text-[var(--accent-color)] text-right">
-        <p>Portfolio</p>
-        <p>/2024</p>
+      <div class="col-span-2 pb-2 mt-20 font-proto text-3xl font-semibold text-[var(--accent-color)] text-right">
+        <h2>Portfolio</h2>
+        <h3>/2024</h3>
       </div>
     </div>
 

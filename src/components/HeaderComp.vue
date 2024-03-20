@@ -21,17 +21,17 @@ function toggleTheme() {
     <header class="fixed top-0 left-0 z-10 pt-[52px] px-11 flex justify-between w-full">
 
       <div class="font-proto font-semibold text-5xl text-[var(--accent-color)]">
-        <RouterLink to="/" data-value="Léopold OHNIMUS">
+        <p data-value="Léopold OHNIMUS">
           Léopold OHNIMUS
-        </RouterLink>
+        </p>
       </div>
 
       <div class="flex gap-5">
         <nav class="font-proto font-semibold text-sm">
             <ul class="flex space-x-5">
-              <RouterLink class="btn" to="/projects">
-                <li data-value="Projects">
-                  Projects
+              <RouterLink class="btn" to="/">
+                <li data-value="Home">
+                  Home
                 </li>
               </RouterLink>
               <RouterLink class="btn" to="/contact">

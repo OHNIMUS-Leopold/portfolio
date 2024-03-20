@@ -21,6 +21,8 @@ export interface Project {
     html: boolean;
     css: boolean;
     javascript: boolean;
+    php: boolean;
+    role: string;
     image: string;
     imageUrl: string;
 };
