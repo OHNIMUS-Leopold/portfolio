@@ -59,7 +59,7 @@ getDownloadURL(storageRef(storage, filePath))
     <div class="justify-self-start">
       <div class="font-noto">
         <h1 class="text-2xl font-semibold uppercase text-center">About me</h1>
-        <p class="text-base font-normal text-center mt-2">
+        <p class="text-base font-normal text-center mt-3">
           Hi! My name is Léopold OHNIMUS!
           <br>
           I'm currently studying multimedia and internet technologies. I'm particularly interested in web development and aim to become a fullstack web developer in the future.

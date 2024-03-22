@@ -22,6 +22,6 @@ This portfolio was developed by me, Léopold OHNIMUS, as part of my individual p
 
 ## Contact
 
-For any questions or suggestions, feel free to contact me via the contact page of my [portfolio](#) or directly by email at the following address: [leopold.ohnimus02@orange.fr](mailto:leopold.ohnimus02@orange.fr).
+For any questions or suggestions, feel free to contact me via the contact page of my [portfolio](https://leopold-ohnimus.fr) or directly by email at the following address: [leopold.ohnimus02@orange.fr](mailto:leopold.ohnimus02@orange.fr).
 
 Thank you for visiting my portfolio!

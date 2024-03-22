@@ -25,4 +25,5 @@ export interface Project {
     role: string;
     image: string;
     imageUrl: string;
+    description: string;
 };
