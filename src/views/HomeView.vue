@@ -28,9 +28,9 @@ onMounted(async () => {
     
   <div>
 
-    <div class="col-span-11 grid grid-cols-10">
+    <div class="col-span-11 grid grid-cols-10 reset">
       <div class="col-span-1"></div>
-      <div class="col-span-4 mt-14">
+      <div class="col-span-4 mt-14 max-[1024px]:mt-10">
         <p class="font-proto text-xs font-medium leading-6">
           Léopold OHNIMUS is currently studying multimedia and internet technologies. He is particularly interested in web development and aims to become a fullstack web developer in the future. 
           <br>
@@ -38,7 +38,7 @@ onMounted(async () => {
         </p>
       </div>
       <div class="col-span-3"></div>
-      <div class="col-span-2 pb-2 mt-20 font-proto text-3xl font-semibold text-[var(--accent-color)] text-right">
+      <div class="col-span-2 pb-2 mt-20 font-proto text-3xl font-semibold text-[var(--accent-color)] text-right max-[1024px]:mt-4">
         <h2>Portfolio</h2>
         <h3>/2024</h3>
       </div>

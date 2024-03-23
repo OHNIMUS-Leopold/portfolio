@@ -151,22 +151,21 @@ setTimeout(() => {
 <template>
 
   <transition name="fade">
-    <!-- <div v-if="isLoading" class="loading-screen" >
+    <div v-if="isLoading" class="loading-screen" >
       <div v-if="showProgress" class="loading-progress">
         <p class="font-proto text-[var(--accent-color)]">{{ loadingProgress }}%</p>
       </div>
       <div v-if="showGreeting" class="loading-greeting">
         <div>
           <p class="data font-proto text-[var(--accent-color)]">{{ currentDate }}</p>
-          <br>
           <p class="data2 font-proto text-[var(--accent-color)]">Léopold OHNIMUS</p>
         </div>
       </div>
-    </div> -->
+    </div>
 
 
 
-  <div>
+  <div v-else>
     <HeaderComp />
     <RouterView v-slot="{ Component }">
       <transition name="page-opacity">
@@ -286,17 +285,20 @@ setTimeout(() => {
   height: 100%;
   background-color: var(--bg-color);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
   flex-direction: column;
+  text-align: end;
 }
 
 .loading-progress {
   font-size: 24px;
+  padding: 0 20px 18px 0;
 }
 
 .loading-greeting {
-  font-size: 36px;
+  font-size: 24px;
+  padding: 0 20px 18px 0;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -338,5 +340,11 @@ body {
   padding: 52px 44px;
 }
 
+@media (max-width: 1024px) {
+  body {
+    padding: 26px 22px;
+    overflow: visible;
+  }
+}
 
 </style>

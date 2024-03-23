@@ -109,12 +109,11 @@ const selectedProjectInfo = computed(() => {
 </script>
 
 <template>
-    <div class="mt-2">
-        <!-- <div class="flex justify-between "> -->
+    <div class="mt-2 max-[1024px]:mt-6">
         <div class="grille">
-            <div class="pr-10 xl:pr-40 self-end mb-12">
+            <div class="pr-10 xl:pr-40 self-end mb-12 max-[1024px]:pr-0 max-[1024px]:mb-10">
                 <h1 class="mb-4 font-noto text-3xl font-[500] uppercase text-[var(--accent-color)]">{{ selectedProjectInfo?.name }}</h1>
-                <div class="flex flex-wrap font-proto font-semibold text-base mb-12 text-[var(--accent-color)]">
+                <div class="flex flex-wrap font-proto font-semibold text-base mb-12 text-[var(--accent-color)] max-[1024px]:mb-2">
                     <RouterLink data-value="Project Info" class="btn mb-2 mr-8" v-if="selectedProjectInfo?.name" :to="{ name: 'single-project', params: { name: selectedProjectInfo.name } }">
                         Project Info
                     </RouterLink>
@@ -139,8 +138,8 @@ const selectedProjectInfo = computed(() => {
                 </div>
             </div>
         </div>
-        <div class="flex justify-between space-x-12">
-          <div class="mt-12 grillefoot m-auto">
+        <div class="flex justify-between space-x-12 reset max-[1024px]:space-x-0">
+          <div class="mt-12 grillefoot m-auto max-[1024px]:mt-6">
               <HtmlIcon v-if="selectedProjectInfo?.html === true" class="h-6 aspect-square" />
               <CssIcon v-if="selectedProjectInfo?.css === true" class="h-6 aspect-square" />
               <JavascriptIcon v-if="selectedProjectInfo?.javascript === true" class="h-6 aspect-square" />
@@ -163,9 +162,9 @@ const selectedProjectInfo = computed(() => {
               <PhotoshopIcon v-if="selectedProjectInfo?.photoshop=== true" class="h-6 aspect-square" />
               <IllustratorIcon v-if="selectedProjectInfo?.illustrator === true" class="h-6 aspect-square" />
           </div>
-          <div class="mt-8 grilletext w-[900px] items-start my-auto">
+          <div class="mt-8 grilletext w-[900px] items-start my-auto max-[1024px]:w-auto">
             <nav class="contents">
-              <ul class="contents font-proto text-xs font-semibold m-auto">
+              <ul class="contents font-proto text-xs font-semibold m-auto max-[1024px]:hidden">
                 <li>Year</li>
                 <li>Agency</li>
                 <li>Role</li>
@@ -259,7 +258,66 @@ input:checked + label {
   label {
     cursor: pointer;
   }
+
+  .grille {
+    display: block;
+  }
+
+  .container {
+    display: flex;
+    margin: auto;
+  }
+
+  .grillefoot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    /* width: 100%; */
+  }
+
+  .grilletext {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+  }
+
 }
+
+
+@media (max-width: 768px){
+  .container {
+    height: 130px;
+    display: flex;
+    margin: auto;
+    width: 280px;
+  }
+
+  .card {
+      width: 17px;
+      min-width: 8px;
+      background-size: cover;
+      background-position: center center;
+      overflow: hidden;
+      margin: 0 2px; /* calculés sur 5px */
+      display: flex;
+      align-items: flex-end;
+      transition: .6s cubic-bezier(.28,-0.03,0,.99);
+      box-shadow: var(--tw-ring-inset) 0 0 0 calc(0.5px + var(--tw-ring-offset-width)) var(--text-color);
+  }
+
+  input {
+      display: none;
+  }
+
+  input:checked + label {
+      width: 230px;
+      min-width: 195px;
+  }
+}
+
+
 
 .indicator {
     display: contents;

@@ -3,6 +3,7 @@ import { ref, onMounted, computed } from 'vue';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 import type { Project } from '@/types';
+import { initializeHoverAnimation } from '@/assets/utils';
 import { useRoute } from 'vue-router';
 import BlenderIcon from '@/components/icon/BlenderIcon.vue';
 import GithubIcon from '@/components/icon/GithubIcon.vue';
@@ -28,6 +29,7 @@ const projects = ref<Project[]>([]);
 const projectName = computed(() => route.params.name);
 
 onMounted(async () => {
+  initializeHoverAnimation();
   const projectsCollection = collection(db, 'projects');
   const querySnapshot = await getDocs(projectsCollection);
   const projectsData: Project[] = [];
@@ -61,21 +63,22 @@ const project = computed(() => {
 </script>
 
 <template>
-    <div class="mt-32 grid grid-cols-2 gap-24 place-items-center">
-      <div class="justify-self-start">
-        <div class="font-noto">
-          <h1 class="text-2xl font-semibold uppercase text-center">{{ project?.name }}</h1>
-          <p class="text-base font-normal text-center mt-3 pb-16">
+    <div class="mt-32 grid grid-cols-2 gap-24 place-items-center reset">
+      <div class="justify-self-start reset max-[1024px]:hidden">
+        <div class="font-noto reset">
+          <h1 class="text-2xl font-semibold uppercase text-center reset">{{ project?.name }}</h1>
+          <p class="text-base font-normal text-center mt-3 pb-16 reset">
             {{ project?.description }}
           </p>
         </div>
       </div>
 
-      <div>
+      <div class="max-[1024px]:mt-20">
+        <h1 class="hidden reset max-[1024px]:font-noto max-[1024px]:text-2xl max-[1024px]:font-semibold max-[1024px]:uppercase max-[1024px]:flex max-[1024px]:justify-center max-[1024px]:mb-3">{{ project?.name }}</h1>
         <a :href="project?.link" class="contents onclick">
           <img :src="project?.imageUrl" :alt="project?.name" class="w-full">
         </a>
-        <div class="mt-6 flex justify-center space-x-3 m-auto">
+        <div class="mt-6 flex justify-center gap-3 m-auto max-[1024px]:flex-wrap max-[1024px]:mt-4">
             <HtmlIcon v-if="project?.html === true" class="h-6 aspect-square" />
             <CssIcon v-if="project?.css === true" class="h-6 aspect-square" />
             <JavascriptIcon v-if="project?.javascript === true" class="h-6 aspect-square" />
@@ -97,6 +100,14 @@ const project = computed(() => {
             </a>
             <PhotoshopIcon v-if="project?.photoshop=== true" class="h-6 aspect-square" />
             <IllustratorIcon v-if="project?.illustrator === true" class="h-6 aspect-square" />
+        </div>
+      </div>
+
+      <div class="hidden reset">
+        <div class="font-noto">
+          <p class="text-base font-normal mt-8">
+            {{ project?.description }}
+          </p>
         </div>
       </div>
     </div>

@@ -4,6 +4,11 @@ import { ref } from 'vue';
 import { themes, currentTheme } from '@/assets/utils';
 
 const isRotated = ref(false);
+const phoneMenu = ref(false);
+
+const toggleMenu = () => {
+  phoneMenu.value = !phoneMenu.value;
+};
 
 function toggleTheme() {
   isRotated.value = !isRotated.value;
@@ -18,29 +23,50 @@ function toggleTheme() {
 </script>
 
 <template>
-    <header class="fixed top-0 left-0 z-10 pt-[52px] px-11 flex justify-between w-full">
+    <header class="fixed top-0 left-0 z-10 pt-[52px] px-11 flex justify-between w-full bg-[var(--bg-color)] max-[1024px]:pt-[26px] max-[1024px]:px-[22px]">
 
-      <div class="font-proto font-semibold text-5xl text-[var(--accent-color)]">
-        <p data-value="Léopold OHNIMUS">
+      <div>
+        <p class="font-proto font-semibold text-5xl text-[var(--accent-color)] max-[1024px]:text-lg" data-value="Léopold OHNIMUS" v-if="phoneMenu === false">
           Léopold OHNIMUS
         </p>
-      </div>
-
-      <div class="flex gap-5">
-        <nav class="font-proto font-semibold text-sm">
+        <div class="hidden reset" v-else>
+          <nav class="font-proto font-semibold text-sm mt-[3px] h-[25px]">
             <ul class="flex space-x-5">
-              <RouterLink class="btn" to="/">
+              <RouterLink class="btn" to="/" @click="toggleMenu">
                 <li data-value="Home">
                   Home
                 </li>
               </RouterLink>
-              <RouterLink class="btn" to="/contact">
+              <RouterLink class="btn" to="/contact" @click="toggleMenu">
+                <li data-value="Contact">
+                  Contact
+                </li>
+              </RouterLink>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="flex gap-5 reset max-[1024px]:flex max-[1024px]:items-center max-[1024px]:gap-3">
+        <nav class="font-proto font-semibold text-sm reset max-[1024px]:hidden">
+            <ul class="flex space-x-5 reset">
+              <RouterLink class="btn reset" to="/">
+                <li data-value="Home">
+                  Home
+                </li>
+              </RouterLink>
+              <RouterLink class="btn reset" to="/contact">
                 <li data-value="Contact">
                   Contact
                 </li>
               </RouterLink>
             </ul>
         </nav>
+
+        <div class="hidden reset">
+          <button class="btn mb-[2px] outline-none font-proto font-semibold text-sm" data-value="Menu" @click="toggleMenu">Menu</button>
+        </div>
+
         <div class="contents">
             <button class="switch-btn" :class="{ rotated: isRotated }" @click="toggleTheme"></button>
         </div>

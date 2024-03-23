@@ -55,10 +55,10 @@ getDownloadURL(storageRef(storage, filePath))
 
 
 <template>
-  <div class="mt-32 grid grid-cols-2 gap-24 place-items-center">
+  <div class="mt-32 grid grid-cols-2 gap-24 place-items-center reset">
     <div class="justify-self-start">
       <div class="font-noto">
-        <h1 class="text-2xl font-semibold uppercase text-center">About me</h1>
+        <h1 class="text-2xl font-semibold uppercase text-center max-[1024px]:mt-20">About me</h1>
         <p class="text-base font-normal text-center mt-3">
           Hi! My name is Léopold OHNIMUS!
           <br>
@@ -94,7 +94,7 @@ getDownloadURL(storageRef(storage, filePath))
     </div>
 
 
-    <div class="feedback-card font-noto text-[var(--bg-color)] justify-self-end">
+    <div class="feedback-card font-noto text-[var(--bg-color)] justify-self-end max-[1024px]:mt-16 max-[1024px]:ml-1">
       <h2 class="feedback-header text-2xl font-semibold py-4 uppercase">Contact me</h2>
       <form class="feedback-body text-base font-normal" @submit.prevent="submitForm()">
         <label class="hidden" for="name">Your name</label>
