@@ -16,6 +16,7 @@ const name = ref('');
 const email = ref('');
 const message = ref('');
 const checkbox = ref(false);
+const messageConf = ref('');
 
 const saveContactInfo = () => {
   const newContactInfo = push(contactInfoRef); 
@@ -32,6 +33,10 @@ const submitForm = () => {
   email.value = '';
   message.value = '';
   checkbox.value = false;
+  messageConf.value = 'Your message has been sent!';
+  setTimeout(() => {
+    messageConf.value = '';
+  }, 5000);
 };
 
 onMounted(async () => {
@@ -107,7 +112,10 @@ getDownloadURL(storageRef(storage, filePath))
           <input v-model="checkbox" type="checkbox" required>
           <p>In accordance with the site's privacy policy, I agree that my personal data provided via this form may be collected and processed for the purpose of responding to my request.</p>
         </div>
-        <button data-value="Send" class="btn font-proto text-sm" type="submit">Send</button>
+        <div class="flex justify-between items-center">
+          <p class="text-sm p-[3px] mt-[10px]">{{ messageConf }}</p>
+          <button data-value="Send" class="btn font-proto text-sm" type="submit">Send</button>
+        </div>
       </form>
     </div>
   </div>
